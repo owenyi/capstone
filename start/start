@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+//module dependencies
+const app = require('../app.js');
+const http = require('http');
+
+//create server
+app.set('port', process.env.PORT || 3000);
+const port = app.get('port');
+const server = http.createServer(app);
+
+//listen
+server.listen(port, () => {
+  console.log("The server is running on : " + port);
+});

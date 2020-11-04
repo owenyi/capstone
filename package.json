@@ -1,0 +1,24 @@
+{
+  "name": "capstone",
+  "version": "1.0.0",
+  "description": "2020 Capstone Design, Dept. of Computer Science &amp; Engineering, Incheon National University",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./start/start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owenyi/capstone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/owenyi/capstone/issues"
+  },
+  "homepage": "https://github.com/owenyi/capstone#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.1-security"
+  }
+}
