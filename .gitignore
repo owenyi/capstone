@@ -4,3 +4,5 @@ config
 
 #flask
 *.pyc
+.idea
+config
