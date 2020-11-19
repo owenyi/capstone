@@ -11,7 +11,7 @@ mongo = PyMongo(app)
 def helloworld():
     return "Hello Flask World!"
 
-@app.route("/db/")
+@app.route("/db/", methods=['GET'])
 def dbHello():
     cursor = mongo.db.tb_diets.find({}, {'_id': 0})
     list_cur = list(cursor)
