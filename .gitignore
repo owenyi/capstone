@@ -3,3 +3,5 @@ node_modules
 
 #flask
 *.pyc
+.idea
+config
