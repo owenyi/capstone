@@ -1,10 +1,10 @@
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
-from flaskapp.config.dbConnection import db
+from flaskapp.config.dbConnection import DB
 
 app = Flask(__name__)
 app.debug = True
-app.config["MONGO_URI"] = "mongodb://%s:%s@%s:%s/%s"%(db.userName, db.passwd, db.host, db.port, db.dbName)
+app.config["MONGO_URI"] = "mongodb://%s:%s@%s:%s/%s"%(DB.userName, DB.passwd, DB.host, DB.port, DB.dbName)
 mongo = PyMongo(app)
 
 @app.route("/")
