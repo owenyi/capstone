@@ -1,11 +1,14 @@
-<<<<<<< HEAD
 #nodejs
+##file
+
+##directory
 node_modules
-config
+configs
 
 #flask
+##file
 *.pyc
-=======
-#dependencies
-/node_modules
->>>>>>> 2670623b3a75017f150d6a8009c2fbef0eaf4b79
+.idea
+##directory
+study
+configs
