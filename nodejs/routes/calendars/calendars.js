@@ -15,7 +15,6 @@ exports.getCalendars = async(req,res) => {
                 returnJson.res_state = "success";
                 returnJson.res_msg = "일정을 가져왔습니다.";
                 returnJson.res_data = result;
-                console.log(result);
                 res.send(returnJson);
             })
             .catch(() => {
