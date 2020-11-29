@@ -80,7 +80,7 @@ exports.getRiceDiets = async(req, res) => {
             await query.getRiceDiets()
                 .then((result) => {
                     returnJson.res_state = "success";
-                    returnJson.res_msg = "밥을 가져왔습니다.";
+                    returnJson.res_msg = "밥 데이터를 가져왔습니다.";
                     returnJson.res_data.Rice = result[0];
 
                     dailyIntakes.kcal -= result[0].kcal;
