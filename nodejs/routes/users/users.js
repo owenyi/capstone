@@ -12,6 +12,7 @@ exports.signup = async(req, res, next) => {
 
         const {id, pw, pw2, userName, age, weight, expectedDate} = req.body;
         signupDatetime = new Date();
+        
 
         let availableId = 0;
         const userNamePattern = /[가-힣]/;

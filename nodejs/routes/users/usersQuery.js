@@ -21,7 +21,7 @@ exports.signup = (id, pw, userName, age, weight, expectedDate, signupDatetime) =
         age : age,
         weight : weight,
         expectedDate : expectedDate,
-        signupDatetime : signupDatetime 
+        signupDatetime : signupDatetime
     })
 
     return new Promise((resolve, reject) => {
