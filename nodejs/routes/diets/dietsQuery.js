@@ -1,5 +1,13 @@
 const dietsMoels = require('./dietsModel.js');
 
+exports.getDiets = (dietName) => {
+    return new Promise((resolve, reject) => {
+        dietsMoels.find({"dietName" : dietName}, (err, rows) => {
+            if(err) reject(err);
+            else resolve(rows);
+        });
+    });
+}
 
 exports.getRiceDiets = () => {
     return new Promise((resolve, reject) => {
@@ -19,18 +27,9 @@ exports.getSoupDiets = () => {
     });
 }
 
-exports.getSideDiets2 = () => {
+exports.getSideDiets = () => {
     return new Promise((resolve, reject) => {
         dietsMoels.aggregate([{$match : {"group" :"반찬"} },{ $sample: { size: 2 } }], (err, rows) => {
-            if(err) reject(err);
-            else resolve(rows);
-        });
-    });
-}
-
-exports.getSideDiets3 = () => {
-    return new Promise((resolve, reject) => {
-        dietsMoels.aggregate([{$match : {"group" :"반찬"} },{ $sample: { size: 3 } }], (err, rows) => {
             if(err) reject(err);
             else resolve(rows);
         });
