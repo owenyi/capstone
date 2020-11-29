@@ -1,6 +1,9 @@
 #nodejs
+##file
+
+##directory
 node_modules
-config
+configs
 
 #flask
 ##file
