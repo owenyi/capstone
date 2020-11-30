@@ -330,7 +330,6 @@ exports.postSideDiets1 = async(req, res) => {
             Math.floor(dailyIntakes.folate - returnJson.res_data.side.folate) > dailyStandard.folate * RATE_FIRST ||
             Math.floor(dailyIntakes.calcium - returnJson.res_data.side.calcium) > dailyStandard.calcium * RATE_FIRST ||
             Math.floor(dailyIntakes.ferrum - returnJson.res_data.side.ferrum) > dailyStandard.ferrum * RATE_FIRST);
-        console.log(dailyIntakes);
         res.send(returnJson);
 
     } catch(e) {
@@ -461,7 +460,6 @@ exports.postSideDiets2 = async(req, res) => {
             Math.floor(dailyIntakes.folate - returnJson.res_data.side.folate) > dailyStandard.folate * RATE_SECOND ||
             Math.floor(dailyIntakes.calcium - returnJson.res_data.side.calcium) > dailyStandard.calcium * RATE_SECOND ||
             Math.floor(dailyIntakes.ferrum - returnJson.res_data.side.ferrum) > dailyStandard.ferrum * RATE_SECOND);
-            console.log(dailyIntakes);
             res.send(returnJson);
 
     } catch(e) {
