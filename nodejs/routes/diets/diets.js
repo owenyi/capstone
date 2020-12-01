@@ -1,7 +1,7 @@
 const dietsModel = require('./dietsModel.js');
 const query = require('./dietsQuery.js');
 const RATE_FIRST = 0.7;
-const RATE_SECOND = 0.1;
+const RATE_SECOND = 0.3;
 
 let dailyIntakes = new Object();
 let dailyStandard = new Object();
@@ -213,11 +213,11 @@ exports.postSoupDiets = async(req, res) => {
                         res.send(returnJson);
                     });
                 } while(swipeSoup.indexOf(returnJson.res_data.soup.dietName) != -1 || 
-                dailyIntakes.kcal - returnJson.res_data.soup.kcal < 200 || 
-                dailyIntakes.protein - returnJson.res_data.soup.protein < 7 || 
-                dailyIntakes.folate - returnJson.res_data.soup.folate < 50 || 
-                dailyIntakes.calcium - returnJson.res_data.soup.calcium < 90 || 
-                dailyIntakes.ferrum - returnJson.res_data.soup.ferrum < 2);
+                dailyIntakes.kcal - returnJson.res_data.soup.kcal < 0 || 
+                dailyIntakes.protein - returnJson.res_data.soup.protein < 0 || 
+                dailyIntakes.folate - returnJson.res_data.soup.folate < 0 || 
+                dailyIntakes.calcium - returnJson.res_data.soup.calcium < 0 || 
+                dailyIntakes.ferrum - returnJson.res_data.soup.ferrum < 0);
                 res.send(returnJson);
 
     } catch(e) {
@@ -328,7 +328,7 @@ exports.postSideDiets1 = async(req, res) => {
                     res.send(returnJson);
                 });
             } while(swipeSide.indexOf(returnJson.res_data.side.dietName) != -1 || 
-            Math.abs(dailyIntakes.kcal - returnJson.res_data.side.kcal) > dailyStandard.kcal * RATE_FIRST ||
+            Math.abs(dailyIntakes.kcal - returnJson.res_data.side.kcal) < 0 ||
             Math.abs(dailyIntakes.protein - returnJson.res_data.side.protein) > dailyStandard.protein * RATE_FIRST ||
             Math.abs(dailyIntakes.folate - returnJson.res_data.side.folate) > dailyStandard.folate * RATE_FIRST ||
             Math.abs(dailyIntakes.calcium - returnJson.res_data.side.calcium) > dailyStandard.calcium * RATE_FIRST ||
@@ -457,13 +457,13 @@ exports.postSideDiets2 = async(req, res) => {
                     res.send(returnJson);
                 });
             } while(swipeSide.indexOf(returnJson.res_data.side.dietName) != -1 || 
-            Math.abs(dailyIntakes.kcal - returnJson.res_data.side.kcal) < -30 ||
-            Math.abs(dailyIntakes.protein - returnJson.res_data.side.protein) < -17 ||
-            Math.abs(dailyIntakes.folate - returnJson.res_data.side.folate) < -200 ||
-            Math.abs(dailyIntakes.calcium - returnJson.res_data.side.calcium) < -310 ||
-            Math.abs(dailyIntakes.ferrum - returnJson.res_data.side.ferrum) < -50);  
+            sideDietName == returnJson.res_data.side.dietName ||
+            Math.floor(dailyIntakes.kcal - returnJson.res_data.side.kcal) < -30 ||
+            Math.floor(dailyIntakes.protein - returnJson.res_data.side.protein) < -17 ||
+            Math.floor(dailyIntakes.folate - returnJson.res_data.side.folate) < -200 ||
+            Math.floor(dailyIntakes.calcium - returnJson.res_data.side.calcium) < -310 ||
+            Math.floor(dailyIntakes.ferrum - returnJson.res_data.side.ferrum) < -50);
             res.send(returnJson);
-
     } catch(e) {
         console.error(e);
         next(createError(404, e));
