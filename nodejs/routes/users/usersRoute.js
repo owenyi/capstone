@@ -7,4 +7,6 @@ router.post('/signup', users.signup);
 
 router.post('/signin', users.signin);
 
+router.post('/updateExpectedDate', users.updateExpectedDate);
+
 module.exports = router;

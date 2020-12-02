@@ -13,13 +13,12 @@ exports.chkId = (id) => {
     });
 };
 
-exports.signup = (id, pw, userName, age, weight, expectedDate, signupDatetime) => {
+exports.signup = (id, pw, userName, age, expectedDate, signupDatetime) => {
     const newUser = new usersModel({
         id : id,
         pw : pw,
         userName : userName,
         age : age,
-        weight : weight,
         expectedDate : expectedDate,
         signupDatetime : signupDatetime
     })
@@ -44,6 +43,15 @@ exports.signin = (id, pw) => {
 exports.updateToken = (id, token) => {
     return new Promise((resolve, reject) => {
         usersModel.update(({"id": id}, {"token": token, "lstSigninDatetime": new Date()}), (err) => {
+            if(err) reject(err);
+            else resolve(1);
+        });
+    });
+}
+
+exports.updateExpectedDate = (id, expectedDate) => {
+    return new Promise((resolve, reject) => {
+        usersModel.update( {"id": id}, {"expectedDate": expectedDate}, (err) => {
             if(err) reject(err);
             else resolve(1);
         });
