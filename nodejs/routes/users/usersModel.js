@@ -1,6 +1,10 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 var usersSchema = new mongoose.Schema({
+    idx: {
+        type: Number,
+        required: false
+    },
     id: {
         type: String,
         required: true
@@ -14,10 +18,6 @@ var usersSchema = new mongoose.Schema({
         required: true
     },
     age:  {
-        type: Number,
-        required: true
-    },
-    weight: {
         type: Number,
         required: true
     },

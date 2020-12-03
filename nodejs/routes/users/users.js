@@ -10,7 +10,7 @@ exports.signup = async(req, res, next) => {
         returnJson.res_state = "";
         returnJson.res_msg = "";
 
-        const {id, pw, pw2, userName, age, weight, expectedDate} = req.body;
+        const {id, pw, pw2, userName, age, expectedDate} = req.body;
         signupDatetime = new Date();
         
 
@@ -52,7 +52,7 @@ exports.signup = async(req, res, next) => {
                 });
     
             if(availableId) {
-                await query.signup(id, password.encipher(pw), userName, age, weight, expectedDate, signupDatetime)
+                await query.signup(id, password.encipher(pw), userName, age, expectedDate, signupDatetime)
                     .then(() => {
                         returnJson.res_state = "success";
                         returnJson.res_msg = "회원가입을 축하드립니다.";
@@ -99,6 +99,33 @@ exports.signin = async(req, res, next) => {
                     returnJson.res_msg = "잠시 후에 시도해주세요.";
                 });
         }
+    } catch(e) {
+        console.error(e);
+        next(createError(404, e));
+    }
+}
+
+exports.updateExpectedDate = async(req,res) => {
+    try{
+        const returnJson = new Object();
+
+        returnJson.res_state = "";
+        returnJson.res_msg = "";
+
+        const {id, expectedDate} = req.body;
+
+
+        await query.updateExpectedDate(id, expectedDate)
+            .then(() => {
+                returnJson.res_state = "success";
+                returnJson.res_msg = "출산 예정일을 수정했습니다.";
+                res.send(returnJson);
+            })
+            .catch(() => {
+                returnJson.res_state = "sql_error";
+                returnJson.res_msg = "잠시 후에 시도해주세요.";
+                res.send(returnJson);
+            });
     } catch(e) {
         console.error(e);
         next(createError(404, e));
