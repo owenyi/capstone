@@ -12,6 +12,9 @@ router.use('/users', usersRoute);
 const calendarsRoute = require('./calendars/calendarsRoute.js');
 router.use('/calendars', calendarsRoute);
 
+const yogasRoute = require('./yogas/yogasRoute.js');
+router.use('/yogas', yogasRoute);
+
 
 //exports
 module.exports = router;
