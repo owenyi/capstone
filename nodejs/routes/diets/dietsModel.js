@@ -5,6 +5,10 @@ var dietsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    group: {
+        type: String,
+        requird: true
+    },
     classification: {
         type: String,
         required: true
@@ -56,7 +60,7 @@ var dietsSchema = new mongoose.Schema({
     vitamin__C: {
         type: Number,
         required: true
-    }
+    }},{ versionKey : false 
 });
 
-module.exports = mongoose.model('tb_diets', dietsSchema);
+module.exports = mongoose.model('diets', dietsSchema);
