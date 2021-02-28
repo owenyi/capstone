@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 
 var dietsSchema = new mongoose.Schema({
+    idx: {
+        type: Number,
+        required: true
+    },
     dietName: {
         type: String,
         required: true

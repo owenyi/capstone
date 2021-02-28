@@ -11,4 +11,6 @@ router.post('/postSideDiets1', diets.postSideDiets1);
 
 router.post('/postSideDiets2', diets.postSideDiets2);
 
+router.post('/postDietsRatingsInit', diets.postDietsRatingsInit);
+
 module.exports = router;
