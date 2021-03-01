@@ -39,7 +39,7 @@ exports.postSideDiets = () => {
 
 exports.patchSelectedDietsRatings = (users_idx, diets_idx) => {
     return new Promise((resolve, reject) => {
-        ratingsModels.update({ "user_idx": users_idx, "diets_idx": diets_idx }, { $inc: { rating: 0.5 }}, (err, rows) => {
+        ratingsModels.update({ "users_idx": users_idx, "diets_idx": diets_idx }, { $inc: { rating: 0.5 }}, (err, rows) => {
             if(err) reject(err);
             else resolve(rows);
         });
@@ -79,7 +79,7 @@ exports.getAllDiets = () => {
 
 exports.patchSelectedDietsRatingsInit = (users_idx, diets_idx) => {
     return new Promise((resolve, reject) => {
-        ratingsModels.update({ "user_idx": users_idx, "diets_idx": diets_idx }, { $inc: { rating: 1 }}, (err, rows) => {
+        ratingsModels.update({ "users_idx": users_idx, "diets_idx": diets_idx }, { $inc: { rating: 1 }}, (err, rows) => {
             if(err) reject(err);
             else resolve(rows);
         });
