@@ -468,6 +468,33 @@ exports.postSideDiets2 = async(req, res) => {
     }
 }
 
+exports.patchSelectedDietsRatings = async(req,res) => {
+    try{
+        const returnJson = new Object();
+
+        returnJson.res_state = "";
+        returnJson.res_msg = "";
+
+        const { users_idx, diets_idx } = req.body;
+
+
+        await query.patchSelectedDietsRatings(users_idx, diets_idx)
+            .then(() => {
+                returnJson.res_state = "success";
+                returnJson.res_msg = "식단을 선택했습니다.";
+                res.send(returnJson);
+            })
+            .catch(() => {
+                returnJson.res_state = "sql_error";
+                returnJson.res_msg = "잠시 후에 시도해주세요.";
+                res.send(returnJson);
+            });
+    } catch(e) {
+        console.error(e);
+        next(createError(404, e));
+    }
+}
+
 exports.postDietsRatingsInit = async(req,res) => {
     try{
         const returnJson = new Object();
@@ -521,7 +548,7 @@ exports.getAllDiets = async(req,res) => {
     }
 }
 
-exports.patchSelectedDietsRatings = async(req,res) => {
+exports.patchSelectedDietsRatingsInit = async(req,res) => {
     try{
         const returnJson = new Object();
 
@@ -531,7 +558,7 @@ exports.patchSelectedDietsRatings = async(req,res) => {
         const { users_idx, diets_idx } = req.body;
 
 
-        await query.patchSelectedDietsRatings(users_idx, diets_idx)
+        await query.patchSelectedDietsRatingsInit(users_idx, diets_idx)
             .then(() => {
                 returnJson.res_state = "success";
                 returnJson.res_msg = "식단을 선택했습니다.";

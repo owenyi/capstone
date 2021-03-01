@@ -1,4 +1,10 @@
 const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
+const db = require('../configs/dbConnection')
+const connection = mongoose.createConnection(db.url, {useNewUrlParser:true, useUnifiedTopology: true, useFindAndModify: false});
+
+mongoose.set('useCreateIndex', true);
+autoIncrement.initialize(connection);
 
 var usersSchema = new mongoose.Schema({
     idx: {
@@ -38,5 +44,13 @@ var usersSchema = new mongoose.Schema({
         require: true
     }},{ versionKey : false 
 });
+
+usersSchema.plugin(autoIncrement.plugin,{
+    model : 'users',
+    field : 'idx',
+    startAt : 1001,
+    increment : 1
+});
+
 
 module.exports = mongoose.model('users', usersSchema);
