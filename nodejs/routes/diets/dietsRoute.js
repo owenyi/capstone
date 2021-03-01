@@ -19,9 +19,4 @@ router.get('/getAllDiets', diets.getAllDiets);
 
 router.patch('/patchSelectedDietsRatingsInit', diets.patchSelectedDietsRatingsInit);
 
-<<<<<<< Updated upstream
-=======
-router.patch('/patchSelectedDietsRatings', diets.patchSelectedDietsRatings);
-
->>>>>>> Stashed changes
 module.exports = router;
