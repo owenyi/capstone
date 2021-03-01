@@ -1,7 +1,5 @@
-const dietsModel = require('./dietsModel.js');
 const query = require('./dietsQuery.js');
 const RATE_FIRST = 0.7;
-const RATE_SECOND = 0.3;
 
 let dailyIntakes = new Object();
 let dailyStandard = new Object();
@@ -470,6 +468,33 @@ exports.postSideDiets2 = async(req, res) => {
     }
 }
 
+exports.patchSelectedDietsRatings = async(req,res) => {
+    try{
+        const returnJson = new Object();
+
+        returnJson.res_state = "";
+        returnJson.res_msg = "";
+
+        const { users_idx, diets_idx } = req.body;
+
+
+        await query.patchSelectedDietsRatings(users_idx, diets_idx)
+            .then(() => {
+                returnJson.res_state = "success";
+                returnJson.res_msg = "식단을 선택했습니다.";
+                res.send(returnJson);
+            })
+            .catch(() => {
+                returnJson.res_state = "sql_error";
+                returnJson.res_msg = "잠시 후에 시도해주세요.";
+                res.send(returnJson);
+            });
+    } catch(e) {
+        console.error(e);
+        next(createError(404, e));
+    }
+}
+
 exports.postDietsRatingsInit = async(req,res) => {
     try{
         const returnJson = new Object();
@@ -477,40 +502,94 @@ exports.postDietsRatingsInit = async(req,res) => {
         returnJson.res_state = "";
         returnJson.res_msg = "";
 
-        const users_idx = req.body.users_idx;
-        let dietsIdx;
+        const { users_idx } = req.body;
 
-        await query.getAllDiets()
-            .then((result) => {
+
+        await query.postDietsRatingsInit(users_idx)
+            .then(() => {
                 returnJson.res_state = "success";
-                returnJson.res_msg = "모든 식단을 가져왔습니다.";
-                dietsIdx = result;
+                returnJson.res_msg = "평점을 초기화했습니다.";
+                res.send(returnJson);
             })
             .catch(() => {
                 returnJson.res_state = "sql_error";
-                returnJson.res_msg = "잠시 후에 시도해주세요!.";
+                returnJson.res_msg = "잠시 후에 시도해주세요.";
                 res.send(returnJson);
             });
-        i = 0;
-        while(i < dietsIdx.length) {
-            let diets_idx = dietsIdx[i].idx
-            await query.postDietsRatingsInit(users_idx, diets_idx)
-                .then(() => {
-                    returnJson.res_state = "success to initial the ratings";
-                    returnJson.res_msg = "평가를 초기화했습니다.";
-                    // res.send(returnJson);
-                })
-                .catch(() => {
-                    returnJson.res_state = "sql_error";
-                    returnJson.res_msg = "잠시 후에 시도해주세요.";
-                    res.send(returnJson);
-                });
-                i += 1;
-            }
-            res.send(returnJson);
     } catch(e) {
         console.error(e);
         next(createError(404, e));
     }
 }
 
+exports.getAllDiets = async(req,res) => {
+    try{
+        const returnJson = new Object();
+        
+        returnJson.res_state = "";
+        returnJson.res_msg = "";
+        returnJson.res_data = new Object();
+
+        await query.getAllDiets()
+            .then((result) => {
+                returnJson.res_state = "success";
+                returnJson.res_msg = "모든 식단을 가져왔습니다.";
+                returnJson.res_data = result;
+                res.send(returnJson);
+            })
+            .catch(() => {
+                returnJson.res_state = "sql_error";
+                returnJson.res_msg = "잠시 후에 시도해주세요.";
+                res.send(returnJson);
+            });
+    } catch(e) {
+        console.error(e);
+        next(createError(404, e));
+    }
+}
+
+exports.patchSelectedDietsRatingsInit = async(req,res) => {
+    try{
+        const returnJson = new Object();
+
+        returnJson.res_state = "";
+        returnJson.res_msg = "";
+
+        const { users_idx, diets_idx } = req.body;
+
+
+        await query.patchSelectedDietsRatingsInit(users_idx, diets_idx)
+            .then(() => {
+                returnJson.res_state = "success";
+                returnJson.res_msg = "식단을 선택했습니다.";
+                res.send(returnJson);
+            })
+            .catch(() => {
+                returnJson.res_state = "sql_error";
+                returnJson.res_msg = "잠시 후에 시도해주세요.";
+                res.send(returnJson);
+            });
+    } catch(e) {
+        console.error(e);
+        next(createError(404, e));
+    }
+}
+
+exports.flattenDietsRatings = async() => {
+    try{
+        await query.flattenDietsRatings()
+            .then(() => {
+                for (var i = 0; i < 10; i++) {
+                    console.log("평점을 평탄화했습니다.");
+                }
+            })
+            .catch(() => {
+                for (var i = 0; i < 10; i++) {
+                    console.log("잠시 후에 다시 시도해주세요.");
+                }
+            });
+    } catch(e) {
+        console.error(e);
+        next(createError(404, e));
+    }
+}
