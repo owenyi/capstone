@@ -184,7 +184,7 @@ exports.postSoupDiets = async(req, res) => {
             dailyIntakes.ferrum = dailyIntakesOldThird.ferrum
         }
 
-        await query.getDiets(riceDietName)
+        await query.getDietsByName(riceDietName)
             .then((result) => {
                 dailyIntakes.kcal -= result[0].kcal;
                 dailyIntakes.protein -= result[0].protein;
@@ -232,6 +232,7 @@ exports.postSideDiets1 = async(req, res) => {
         returnJson.res_msg = "";
         returnJson.res_data = new Object();
 
+        const users_idx = req.body.users_idx;
         const users_age = req.body.users_age;
         let expectedDate = req.body.expectedDate;
         const riceDietName = req.body.riceDietName;
@@ -287,7 +288,7 @@ exports.postSideDiets1 = async(req, res) => {
             dailyStandard = dailyIntakesOldThird
         }
 
-        await query.getDiets(riceDietName)
+        await query.getDietsByName(riceDietName)
             .then((result) => {
                 dailyIntakes.kcal -= result[0].kcal;
                 dailyIntakes.protein -= result[0].protein;
@@ -300,7 +301,7 @@ exports.postSideDiets1 = async(req, res) => {
                 returnJson.res_msg = "잠시 후에 시도해주세요.";
                 res.send(returnJson);
             });
-        await query.getDiets(soupDietName)
+        await query.getDietsByName(soupDietName)
             .then((result) => {
                 dailyIntakes.kcal -= result[0].kcal;
                 dailyIntakes.protein -= result[0].protein;
@@ -313,8 +314,36 @@ exports.postSideDiets1 = async(req, res) => {
                 returnJson.res_msg = "잠시 후에 시도해주세요.";
                 res.send(returnJson);
             });
+            var topSideDietsArray = []
+            await query.getTopSideDiets(users_idx)
+            .then((result) => {
+                topSideDietsArray = result;
+            })
+            .catch(() => {
+                returnJson.res_state = "sql_error";
+                returnJson.res_msg = "잠시 후에 시도해주세요.";
+                res.send(returnJson);
+            });
+
+            var topGroupArray = [];
+            for (var i = 0; i < topSideDietsArray.length; i++) {
+                await query.getDietsByIdx(topSideDietsArray[i].diets_idx)
+                .then((result) => {
+                    topGroupArray[i] = result[0].classification;
+                })
+                .catch(() => {
+                    returnJson.res_state = "sql_error";
+                    returnJson.res_msg = "잠시 후에 시도해주세요.";
+                    res.send(returnJson);
+                });
+            }
+        var count = 0;
         do {
-            await query.postSideDiets()
+            var classification = topGroupArray[Math.floor(Math.random() * 10)];
+            count += 1;
+            console.log(count)
+            if (count > 100) {
+                await query.postSideDiets()
                 .then((result) => {
                     returnJson.res_state = "success";
                     returnJson.res_msg = "반찬을 가져왔습니다.";
@@ -325,8 +354,21 @@ exports.postSideDiets1 = async(req, res) => {
                     returnJson.res_msg = "잠시 후에 시도해주세요.";
                     res.send(returnJson);
                 });
+            } else {
+                await query.getRecommendSideDiets(classification)
+                    .then((result) => {
+                        returnJson.res_state = "success";
+                        returnJson.res_msg = "반찬을 가져왔습니다.";
+                        returnJson.res_data.side = result[0];
+                    })
+                    .catch(() => {
+                        returnJson.res_state = "sql_error";
+                        returnJson.res_msg = "잠시 후에 시도해주세요.";
+                        res.send(returnJson);
+                    });
+                }
             } while(swipeSide.indexOf(returnJson.res_data.side.dietName) != -1 || 
-            Math.abs(dailyIntakes.kcal - returnJson.res_data.side.kcal) < 0 ||
+            Math.abs(dailyIntakes.kcal - returnJson.res_data.side.kcal) > dailyStandard.kcal * RATE_FIRST ||
             Math.abs(dailyIntakes.protein - returnJson.res_data.side.protein) > dailyStandard.protein * RATE_FIRST ||
             Math.abs(dailyIntakes.folate - returnJson.res_data.side.folate) > dailyStandard.folate * RATE_FIRST ||
             Math.abs(dailyIntakes.calcium - returnJson.res_data.side.calcium) > dailyStandard.calcium * RATE_FIRST ||
@@ -347,6 +389,7 @@ exports.postSideDiets2 = async(req, res) => {
         returnJson.res_msg = "";
         returnJson.res_data = new Object();
 
+        const users_idx = req.body.users_idx;
         const users_age = req.body.users_age;
         let expectedDate = req.body.expectedDate;
         const riceDietName = req.body.riceDietName;
@@ -403,7 +446,7 @@ exports.postSideDiets2 = async(req, res) => {
             dailyStandard = dailyIntakesOldThird
         }
 
-        await query.getDiets(riceDietName)
+        await query.getDietsByName(riceDietName)
             .then((result) => {
                 dailyIntakes.kcal -= result[0].kcal;
                 dailyIntakes.protein -= result[0].protein;
@@ -416,7 +459,7 @@ exports.postSideDiets2 = async(req, res) => {
                 returnJson.res_msg = "잠시 후에 시도해주세요.";
                 res.send(returnJson);
             });
-        await query.getDiets(soupDietName)
+        await query.getDietsByName(soupDietName)
             .then((result) => {
                 dailyIntakes.kcal -= result[0].kcal;
                 dailyIntakes.protein -= result[0].protein;
@@ -429,7 +472,7 @@ exports.postSideDiets2 = async(req, res) => {
                 returnJson.res_msg = "잠시 후에 시도해주세요.";
                 res.send(returnJson);
             });
-        await query.getDiets(sideDietName)
+        await query.getDietsByName(sideDietName)
             .then((result) => {
                 dailyIntakes.kcal -= result[0].kcal;
                 dailyIntakes.protein -= result[0].protein;
@@ -442,18 +485,59 @@ exports.postSideDiets2 = async(req, res) => {
                 returnJson.res_msg = "잠시 후에 시도해주세요.";
                 res.send(returnJson);
             });
-        do {
-            await query.postSideDiets()
+            var topSideDietsArray = []
+            await query.getTopSideDiets(users_idx)
+            .then((result) => {
+                topSideDietsArray = result;
+            })
+            .catch(() => {
+                returnJson.res_state = "sql_error";
+                returnJson.res_msg = "잠시 후에 시도해주세요.";
+                res.send(returnJson);
+            });
+
+            var topGroupArray = [];
+            for (var i = 0; i < topSideDietsArray.length; i++) {
+                await query.getDietsByIdx(topSideDietsArray[i].diets_idx)
                 .then((result) => {
-                    returnJson.res_state = "success";
-                    returnJson.res_msg = "반찬을 가져왔습니다.";
-                    returnJson.res_data.side = result[0];
+                    topGroupArray[i] = result[0].classification;
                 })
                 .catch(() => {
                     returnJson.res_state = "sql_error";
                     returnJson.res_msg = "잠시 후에 시도해주세요.";
                     res.send(returnJson);
                 });
+            }
+            var count = 0;
+            do {
+                var classification = topGroupArray[Math.floor(Math.random() * 10)];
+                count += 1;
+                console.log(count)
+                if (count > 100) {
+                    await query.postSideDiets()
+                    .then((result) => {
+                        returnJson.res_state = "success";
+                        returnJson.res_msg = "반찬을 가져왔습니다.";
+                        returnJson.res_data.side = result[0];
+                    })
+                    .catch(() => {
+                        returnJson.res_state = "sql_error";
+                        returnJson.res_msg = "잠시 후에 시도해주세요.";
+                        res.send(returnJson);
+                    });
+                } else {
+                    await query.getRecommendSideDiets(classification)
+                        .then((result) => {
+                            returnJson.res_state = "success";
+                            returnJson.res_msg = "반찬을 가져왔습니다.";
+                            returnJson.res_data.side = result[0];
+                        })
+                        .catch(() => {
+                            returnJson.res_state = "sql_error";
+                            returnJson.res_msg = "잠시 후에 시도해주세요.";
+                            res.send(returnJson);
+                        });
+                    }
             } while(swipeSide.indexOf(returnJson.res_data.side.dietName) != -1 || 
             sideDietName == returnJson.res_data.side.dietName ||
             Math.floor(dailyIntakes.kcal - returnJson.res_data.side.kcal) < -30 ||

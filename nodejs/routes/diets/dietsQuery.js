@@ -1,9 +1,18 @@
 const dietsModels = require('./dietsModel.js');
 const ratingsModels = require('./ratingsModel.js');
 
-exports.getDiets = (dietName) => {
+exports.getDietsByName = (dietName) => {
     return new Promise((resolve, reject) => {
         dietsModels.aggregate([{$match : {"dietName" :dietName} },{ $sample: { size: 1 } }], (err, rows) => {
+            if(err) reject(err);
+            else resolve(rows);
+        });
+    });
+}
+
+exports.getDietsByIdx = (idx) => {
+    return new Promise((resolve, reject) => {
+        dietsModels.aggregate([{$match : {"idx" :idx} },{ $sample: { size: 1 } }], (err, rows) => {
             if(err) reject(err);
             else resolve(rows);
         });
@@ -28,9 +37,27 @@ exports.postSoupDiets = () => {
     });
 }
 
+exports.getRecommendSideDiets = (classification) => {
+    return new Promise((resolve, reject) => {
+        dietsModels.aggregate([{$match : {"group" :"반찬", "classification" : classification} },{ $sample: { size: 1 } }], (err, rows) => {
+            if(err) reject(err);
+            else resolve(rows);
+        });
+    });
+}
+
 exports.postSideDiets = () => {
     return new Promise((resolve, reject) => {
         dietsModels.aggregate([{$match : {"group" :"반찬"} },{ $sample: { size: 1 } }], (err, rows) => {
+            if(err) reject(err);
+            else resolve(rows);
+        });
+    });
+}
+
+exports.getTopSideDiets = (users_idx) => {
+    return new Promise((resolve, reject) => {
+        ratingsModels.aggregate([{$match : {"users_idx" :users_idx} },{$sort: {rating : -1 }},{ $limit: 10 }], (err, rows) => {
             if(err) reject(err);
             else resolve(rows);
         });
