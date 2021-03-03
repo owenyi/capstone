@@ -97,7 +97,7 @@ exports.postDietsRatingsInit = (users_idx) => {
 
 exports.getAllDiets = () => {
     return new Promise((resolve, reject) => {
-        dietsModels.find({},{idx:1, dietName:1}, (err, rows) => {
+        dietsModels.aggregate([{$match : {"group" : "반찬"}}, {$project : {idx : 1, dietName : 1}}, {$sample : {size : 445}}], (err, rows) => {
             if(err) reject(err);
             else resolve(rows);
         });
