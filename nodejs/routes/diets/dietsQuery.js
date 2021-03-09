@@ -57,10 +57,11 @@ exports.getTopSideDiets = (users_idx) => {
 
 exports.patchSelectedDietsRatings = (users_idx, diets_idx) => {
     return new Promise((resolve, reject) => {
-        ratingsModels.update({ "users_idx": users_idx, "diets_idx": diets_idx }, { $inc: { rating: 0.5 }}, (err, rows) => {
-            if(err) reject(err);
-            else resolve(rows);
-        });
+        for (var i = 0; i < diets_idx.length; i++) {
+            ratingsModels.update({ "users_idx": users_idx, "diets_idx": diets_idx[i] }, { $inc: { rating: 0.5 }}, (err, rows) => {
+                if(err) reject(err);
+            })
+        } resolve(1);
     });
 }
 
