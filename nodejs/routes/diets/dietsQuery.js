@@ -37,15 +37,6 @@ exports.postSoupDiets = () => {
     });
 }
 
-exports.getRecommendSideDiets = (classification) => {
-    return new Promise((resolve, reject) => {
-        dietsModels.aggregate([{$match : {"group" :"반찬", "classification" : classification} },{ $sample: { size: 1 } }], (err, rows) => {
-            if(err) reject(err);
-            else resolve(rows);
-        });
-    });
-}
-
 exports.postSideDiets = () => {
     return new Promise((resolve, reject) => {
         dietsModels.aggregate([{$match : {"group" :"반찬"} }], (err, rows) => {
