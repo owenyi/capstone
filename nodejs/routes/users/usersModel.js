@@ -48,9 +48,23 @@ var usersSchema = new mongoose.Schema({
 usersSchema.plugin(autoIncrement.plugin,{
     model : 'users',
     field : 'idx',
-    startAt : 1001,
+    startAt : 1,
     increment : 1
 });
+/*
+users_idx 초기화
+var user = connection.model('user', usersSchema),
+use = new user();
 
+use.save(function(err){
+    use.idx === 0;
+    use.nextCount(function(err, idx){
+        idx === 1;
+        use.resetCount(function(err, nextCount){
+            nextCount === 0;
+        });
+    });
+});
+*/
 
 module.exports = mongoose.model('users', usersSchema);
