@@ -33,7 +33,7 @@ exports.signup = (id, pw, userName, age, expectedDate, signupDatetime) => {
 
 exports.signin = (id, pw) => {
     return new Promise((resolve, reject) => {
-        usersModel.findOne({"id": id, "pw": pw}, "id", (err, rows) => {
+        usersModel.findOne({"id": id, "pw": pw}, (err, rows) => {
             if(err) reject(err);
             else resolve(rows);
         });
