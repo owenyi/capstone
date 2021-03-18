@@ -77,13 +77,14 @@ exports.signin = async(req, res, next) => {
         
         returnJson.res_state = "";
         returnJson.res_msg = "";
+        returnJson.res_data = new Object();
 
         const id = req.body.id;
         const pw = req.body.pw;
         const token = req.body.token;
 
-        data = await query.signin(id, password.encipher(pw));
-        if(data == null) {
+        returnJson.res_data = await query.signin(id, password.encipher(pw));
+        if(returnJson.res_data == null) {
             returnJson.res_state = "invalid_data";
             returnJson.res_msg = "잘못된 아이디 혹은 잘못된 비밀번호입니다.";
             res.send(returnJson);
