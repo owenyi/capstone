@@ -1,5 +1,6 @@
 # capstone
-### 2020 Capstone Design, Dept. of Computer Science &amp; Engineering, Incheon National University
+### The Design and Implementation of a Mobile Healthcare Application For Pregnants
+**2020 Capstone Design, Dept. of Computer Science &amp; Engineering, Incheon National University**
   
 # 소개
 ### 임산부 건강관리의 필요성
@@ -20,7 +21,7 @@
 |산모 나이 등록|산모의 나이에 따라 식단 정보를 제공|
 |식단 추천|일일 영양소 섭취기준과 추천 알고리즘을 바탕으로 식단 추천|
 |요가|임산부에게 도움이 되는 요가를 볼 수 있음|
-|자세추정|카메라를 사용해 자세를 인식하고, 주어지는 요가 이미지와 맞는지 판별|
+|자세추정|카메라를 사용해 자세를 인식하고, 주어지는 요가 이미지와 일치하는지 판별|
 |인근 산부인과 검색|인근 산부인과 검색을 통해 응급시 신속히 가까운 병원을 찾을 수 있음|
 |병원 일정 알리미|다음 병원 선생님과의 예약날짜를 입력하여 일정을 잊지 않도록 알려줌|
 |회원정보 관리|회원가입, 로그인, 회원정보 수정, 알림 설정|
