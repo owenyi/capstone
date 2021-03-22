@@ -34,7 +34,7 @@
 ### 1. 메뉴구성도
 ![image](https://user-images.githubusercontent.com/67616332/111996396-53dace00-8b5d-11eb-8ec8-66c85e5ce999.PNG)
 ### 2. 식단 알고리즘
-![image](https://user-images.githubusercontent.com/67616332/111996695-a1efd180-8b5d-11eb-86e1-45a715874b20.PNG)
+![image](https://user-images.githubusercontent.com/67616332/111996875-cc418f00-8b5d-11eb-87d3-56ca099f2595.PNG)
 ### 3. 요가 알고리즘
 ![image](https://user-images.githubusercontent.com/67616332/111996433-5d643600-8b5d-11eb-9273-1425dd1c0038.PNG)
 
