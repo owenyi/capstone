@@ -27,6 +27,20 @@
 |회원정보 관리|회원가입, 로그인, 회원정보 수정, 알림 설정|
 
 # 설계
+<details>
+  <summary>상세 내용 확인</summary>
+  <div markdown="1">
+    
+### 1. S/W
+![image](https://user-images.githubusercontent.com/67588446/111156860-8de62600-85d9-11eb-8c2c-d820330bb290.png)
+### 2. 식단 알고리즘
+
+![image](https://user-images.githubusercontent.com/67616332/111994723-6e13ac80-8b5b-11eb-9ca7-af6df827f17f.PNG)
+### 3. 요가 알고리즘
+![image](https://user-images.githubusercontent.com/67616332/111994756-766be780-8b5b-11eb-81f6-882501ed2e1c.PNG)
+
+  </div>
+</details>
 
 # 개발환경
 
