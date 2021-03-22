@@ -31,12 +31,13 @@
   <summary>상세 내용 확인</summary>
   <div markdown="1">
     
-### 1. S/W
-![image](https://user-images.githubusercontent.com/67616332/111994835-94394c80-8b5b-11eb-9693-897cfeb3d02b.PNG)
+### 1. 메뉴구성도
+![image](https://user-images.githubusercontent.com/67616332/111996396-53dace00-8b5d-11eb-8ec8-66c85e5ce999.PNG)
 ### 2. 식단 알고리즘
-![image](https://user-images.githubusercontent.com/67616332/111994723-6e13ac80-8b5b-11eb-9ca7-af6df827f17f.PNG)
+![image](https://user-images.githubusercontent.com/67616332/111996419-5806eb80-8b5d-11eb-991a-cd155032f838.PNG)
 ### 3. 요가 알고리즘
-![image](https://user-images.githubusercontent.com/67616332/111994756-766be780-8b5b-11eb-81f6-882501ed2e1c.PNG)
+![image](https://user-images.githubusercontent.com/67616332/111996433-5d643600-8b5d-11eb-9273-1425dd1c0038.PNG)
+
 
   </div>
 </details>
@@ -53,7 +54,7 @@
 |DB|Robo 3T|MongoDB|MongoDB|
 |\*HF|Pycharm|-|Python|
 
-\*CF : Hybrid Filtering
+\*HF : Hybrid Filtering
   
 ### INFRA-AWS
 | 구분 | 서비스 |
