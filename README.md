@@ -65,7 +65,7 @@
 ### FE
 |구분|개발환경|개발도구|개발언어|
 |--|--| -- |--|
-|Front|Android Studio| - | Java |
+|Front|Android Studio| - | Java & Kotlin |
   
   </div>
 </details>
