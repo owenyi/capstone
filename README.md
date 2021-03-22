@@ -32,7 +32,7 @@
   <div markdown="1">
     
 ### 1. 메뉴구성도
-![image](https://user-images.githubusercontent.com/67616332/111997039-fa26d380-8b5d-11eb-849c-a4d696635301.PNG)
+![image](https://user-images.githubusercontent.com/67616332/111997295-407c3280-8b5e-11eb-8b94-666d990624d1.PNG)
 ### 2. 식단 알고리즘
 ![image](https://user-images.githubusercontent.com/67616332/111996875-cc418f00-8b5d-11eb-87d3-56ca099f2595.PNG)
 ### 3. 요가 알고리즘
