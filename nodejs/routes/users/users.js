@@ -9,6 +9,7 @@ exports.signup = async(req, res, next) => {
 
         returnJson.res_state = "";
         returnJson.res_msg = "";
+        returnJson.res_data = new Object();
 
         const {id, pw, pw2, userName, age, expectedDate} = req.body;
         signupDatetime = new Date();
@@ -52,11 +53,22 @@ exports.signup = async(req, res, next) => {
                 });
     
             if(availableId) {
+
+
                 await query.signup(id, password.encipher(pw), userName, age, expectedDate, signupDatetime)
                     .then(() => {
                         returnJson.res_state = "success";
                         returnJson.res_msg = "회원가입을 축하드립니다.";
+                    })
+                    .catch(() => {
+                        returnJson.res_state = "sql_error";
+                        returnJson.res_msg = "잠시 후에 시도해주세요.";
                         res.send(returnJson);
+                    });
+                await query.getIdxById(id)
+                    .then((result) => {
+                        returnJson.res_data = result[0].idx;
+                        res.send(returnJson)
                     })
                     .catch(() => {
                         returnJson.res_state = "sql_error";

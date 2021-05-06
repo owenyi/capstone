@@ -13,6 +13,15 @@ exports.chkId = (id) => {
     });
 };
 
+exports.getIdxById = (id) => {
+    return new Promise((resolve, reject) => {
+        usersModel.find({"id": id}, (err, rows) => {
+            if(err) reject(err);
+            else resolve(rows);
+        });
+    });
+}
+
 exports.signup = (id, pw, userName, age, expectedDate, signupDatetime) => {
     const newUser = new usersModel({
         id : id,
