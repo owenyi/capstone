@@ -15,8 +15,10 @@
 # 프로젝트 총평
 
 # 성과
-장려상
-KIPS 2021 온라인 춘계학술발표대회 논문게재
+### 장려상
+
+### KIPS 2021 온라인 춘계학술발표대회 논문게재
+논문 : https://manuscriptlink-society-file.s3-ap-northeast-1.amazonaws.com/kips/conference/kips2021spring/presentation/KIPS_C2021A0026.pdf
 
 # 요구사항
 <details>
