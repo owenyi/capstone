@@ -31,7 +31,9 @@
 
 # 성과
 ### 졸업작품발표회 동상
+![image](https://user-images.githubusercontent.com/67588446/122169812-cd622e00-ceb8-11eb-858f-c73d8cdd84dc.png)
 
+발표(youtube) : https://www.youtube.com/watch?v=W2Rw1ElWoTE
 ### KIPS 2021 온라인 춘계학술발표대회 논문게재
 논문 : https://manuscriptlink-society-file.s3-ap-northeast-1.amazonaws.com/kips/conference/kips2021spring/presentation/KIPS_C2021A0026.pdf
 
