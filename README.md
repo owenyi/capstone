@@ -6,18 +6,14 @@
 
 - 소개
 
-    자취생활을 하면서 직접 겪었던 식재료 관리의 불편함,
-
-    이를 덜어내기 위해 고안한 식재료 지능화 관리 서비스
+    임산부 건강관리를 도와주는 어플리케이션
 
 - 기여
-    - 식재료 구매부터 폐기까지 반자동화하기 위한 서버 개발
-    - 레시피 추천을 위한 추천 알고리즘 개발
-    - 식재료 구매 정보 전달을 위한 웹 크롤러 개발
-- 한이음 공모전 입선, KIPS 2020 온라인 추계학술발표대회 논문게재
-- 시연(youtube) : [https://youtu.be/hYwN-_jjMM4](https://youtu.be/hYwN-_jjMM4)
-- API Docs: [https://github.com/owenyi/hanium/wiki](https://github.com/owenyi/hanium/wiki)
-- Project Repo : [https://github.com/owenyi/hanium](https://github.com/owenyi/hanium)
+    - 회원관리 기능 개발
+    - 자세추정을 이용한 운동 관리 기능 개발
+    - 식단 추천을 위한 추천 알고리즘 개발
+- 졸업작품발표회 동상, KIPS 2021 온라인 춘계학술발표대회 논문게재
+- 발표(youtube) : [https://www.youtube.com/watch?v=W2Rw1ElWoTE](https://www.youtube.com/watch?v=W2Rw1ElWoTE)
   
 # 소개
 ### 임산부 건강관리의 필요성
